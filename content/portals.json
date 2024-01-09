@@ -1,0 +1,73 @@
+{
+  "collection": "portal",
+  "fields": [
+    {
+      "id": "enabled",
+      "type": "bool",
+      "default": false
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "description": "Give your customer portal a heading",
+      "required": true
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "long_text",
+      "description": "Give your customer portal a short description",
+      "required": true
+    },
+    {
+      "id": "subscriptions",
+      "label": "Subscriptions",
+      "type": "child_collection",
+      "fields": [
+        {
+          "id": "cancel",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "id": "pause",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "id": "update",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "id": "discounts",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "id": "licence_keys",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "id": "files",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "id": "expired",
+          "type": "bool",
+          "default": true
+        },
+        {
+          "id": "product",
+          "label": "Product",
+          "type": "product_lookup",
+          "description": "A list of subscription products that can be managed by the customer",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

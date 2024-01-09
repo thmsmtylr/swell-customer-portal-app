@@ -1,0 +1,8 @@
+{
+  "id": "customer_portal",
+  "version": "1.0.0",
+  "name": "Customer Portal",
+  "description": "Provide customers with an intuitive self-service portal where customers can manage subscriptions and payment methods, view payment history and download their invoices.",
+  "type": "integration",
+  "permissions": []
+}

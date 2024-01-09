@@ -1,0 +1,18 @@
+{
+  "label": "Customer Portal",
+  "fields": {
+    "account_id": {
+      "type": "objectid",
+      "required": true
+    },
+    "account": {
+      "type": "link",
+      "model": "accounts",
+      "key": "account_id"
+    },
+    "enabled": {
+      "type": "bool",
+      "default": false
+    }
+  }
+}

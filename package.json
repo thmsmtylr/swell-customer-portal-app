@@ -1,0 +1,9 @@
+{
+  "name": "customer_portal",
+  "version": "1.0.0",
+  "description": "Provide customers with an intuitive self-service portal where customers can manage subscriptions and payment methods, view payment history and download their invoices.",
+  "scripts": {},
+  "devDependencies": {
+    "@swell/app-types": "^1.0.5"
+  }
+}
