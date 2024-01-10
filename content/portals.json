@@ -1,5 +1,5 @@
 {
-  "collection": "portal",
+  "collection": "portals",
   "fields": [
     {
       "id": "enabled",
@@ -46,6 +46,11 @@
           "default": true
         },
         {
+          "id": "expired",
+          "type": "bool",
+          "default": true
+        },
+        {
           "id": "licence_keys",
           "type": "bool",
           "default": true
@@ -56,16 +61,53 @@
           "default": true
         },
         {
-          "id": "expired",
-          "type": "bool",
-          "default": true
-        },
-        {
           "id": "product",
           "label": "Product",
           "type": "product_lookup",
           "description": "A list of subscription products that can be managed by the customer",
           "required": true
+        }
+      ]
+    },
+    {
+      "id": "appearance",
+      "label": "Appearance",
+      "type": "child_collection",
+      "fields": [
+        {
+          "id": "background",
+          "label": "Background",
+          "type": "text"
+        },
+        {
+          "id": "logo",
+          "label": "Logo",
+          "type": "text"
+        },
+        {
+          "id": "headings",
+          "label": "Headings",
+          "type": "text"
+        },
+        {
+          "id": "secondary_text",
+          "label": "Secondary Text",
+          "type": "text"
+        },
+        {
+          "id": "links",
+          "label": "Links",
+          "type": "text"
+        },
+        {
+          "id": "button",
+          "label": "Button",
+          "type": "text"
+        },
+        {
+          "id": "button_text",
+          "label": "Button Text",
+          "type": "text"
         }
       ]
     }
