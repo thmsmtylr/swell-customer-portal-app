@@ -1,11 +1,6 @@
 "use client";
 import { useContext } from "react";
-import {
-  SwellContext,
-  useCustomer,
-  useSubscriptions,
-  useStore,
-} from "@/lib/swell";
+import { SwellContext, useSubscriptions, useStore } from "@/lib/swell";
 import { Aside } from "@/components/Aside";
 import { Customer } from "@/components/Customer";
 import { Tabs } from "@/components/Tabs";
