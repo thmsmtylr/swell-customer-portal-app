@@ -1,8 +1,8 @@
 "use client";
 import { useContext } from "react";
 import {
-  useCustomer,
   SwellContext,
+  useCustomer,
   useSubscriptions,
   useStore,
 } from "@/lib/swell";
@@ -14,8 +14,7 @@ import { Loading } from "@/components/Loading";
 export default function Home() {
   const { isLoading } = useContext(SwellContext);
   const { store } = useStore();
-  const { customer } = useCustomer();
-  const { subscriptions } = useSubscriptions();
+  const { subscriptions, customer } = useSubscriptions();
 
   if (isLoading) {
     return <Loading />;

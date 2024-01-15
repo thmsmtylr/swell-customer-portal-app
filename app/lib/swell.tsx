@@ -50,12 +50,14 @@ export function useStore() {
   return { store };
 }
 
-export function useCustomer() {
+export function useSubscriptions() {
+  const [subscriptions, setSubscriptions] = useState<any>(null);
   const [customer, setCustomer] = useState<any>(null);
   const { setIsLoading } = useContext(SwellContext);
 
   useEffect(() => {
     setIsLoading(true);
+
     swell.account
       .login(
         process.env.NEXT_PUBLIC_SWELL_STORE_CUSTOMER_EMAIL ?? "",
@@ -63,36 +65,19 @@ export function useCustomer() {
       )
       .then((data) => {
         setCustomer(data);
-        setIsLoading(false);
+        return swell.subscriptions.list();
       })
-      .catch((error) => {
-        console.error("Login error", error);
-        setIsLoading(false);
-      });
-  }, []);
-
-  return { customer };
-}
-
-export function useSubscriptions() {
-  const [subscriptions, setSubscriptions] = useState<any>(null);
-  const { setIsLoading } = useContext(SwellContext);
-
-  useEffect(() => {
-    setIsLoading(true);
-    swell.subscriptions
-      .list()
       .then((data) => {
         setSubscriptions(data);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Subscriptions error", error);
+        console.error("Error", error);
         setIsLoading(false);
       });
   }, []);
 
-  return { subscriptions };
+  return { subscriptions, customer };
 }
 
 export function SwellProvider({ children }: { children: ReactNode }) {
