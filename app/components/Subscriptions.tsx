@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Badge } from "@emryui/react-badge";
 import { Dropdown } from "./Dropdown";
 import Visa from "/public/payment-method-visa.svg";
-import { ProductImage } from "./<ProductImage";
+import { ProductImage } from "./ProductImage";
 
 type SubscriptionStatus =
   | "pending"
