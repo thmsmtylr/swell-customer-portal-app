@@ -6,9 +6,10 @@ interface TabsProps {
   subscriptions: [any];
 }
 
+const excludedStatuses = ["draft"];
+
 export function Tabs(props: TabsProps) {
   const { subscriptions } = props;
-  console.log(subscriptions);
   return (
     <Root defaultValue="subscriptions" className="flex flex-grow-0 flex-col">
       <List className="mx-auto mb-6 flex items-center justify-evenly gap-2 rounded-lg border border-gray-100 bg-gray-50 p-1">
@@ -25,6 +26,12 @@ export function Tabs(props: TabsProps) {
           Payment methods
         </Trigger>
         <Trigger
+          value="billing"
+          className="flex items-center justify-center rounded-md px-3 py-2 text-sm font-semibold text-gray-500 data-[state=active]:bg-white data-[state=active]:text-gray-700 data-[state=active]:shadow-sm"
+        >
+          Billing
+        </Trigger>
+        <Trigger
           value="addresses"
           className="flex items-center justify-center rounded-md px-3 py-2 text-sm font-semibold text-gray-500 data-[state=active]:bg-white data-[state=active]:text-gray-700 data-[state=active]:shadow-sm"
         >
@@ -37,27 +44,32 @@ export function Tabs(props: TabsProps) {
         </h3>
         <div className="mb-12 flex flex-col gap-6">
           {subscriptions?.length > 0 &&
-            subscriptions.map((subscription) => {
-              return (
-                <Subscriptions
-                  key={subscription.id}
-                  status={subscription.status}
-                  product_name={subscription.product.name}
-                  product_image={subscription.product.images[0].file.url}
-                  price={{
-                    grand_total: subscription.grand_total,
-                    discount_total: subscription.discount_total,
-                    price_total: subscription.price_total,
-                    currency: subscription.currency,
-                  }}
-                  coupon_code={subscription.coupon_code}
-                  product_discount_total={subscription.product_discount_total}
-                  date_period_end={subscription.date_period_end}
-                  billing={subscription.billing}
-                  billing_schedule={subscription.billing_schedule}
-                />
-              );
-            })}
+            subscriptions
+              .filter(
+                (subscription) =>
+                  !excludedStatuses.includes(subscription.status),
+              )
+              .map((subscription) => {
+                return (
+                  <Subscriptions
+                    key={subscription.id}
+                    status={subscription.status}
+                    product_name={subscription.product.name}
+                    product_image={subscription.product.images[0].file.url}
+                    price={{
+                      grand_total: subscription.grand_total,
+                      discount_total: subscription.discount_total,
+                      price_total: subscription.price_total,
+                      currency: subscription.currency,
+                    }}
+                    coupon_code={subscription.coupon_code}
+                    product_discount_total={subscription.product_discount_total}
+                    date_period_end={subscription.date_period_end}
+                    billing={subscription.billing}
+                    billing_schedule={subscription.billing_schedule}
+                  />
+                );
+              })}
           {/* <Subscriptions
             status="active"
             plan_name="Holiday Espresso Blend"

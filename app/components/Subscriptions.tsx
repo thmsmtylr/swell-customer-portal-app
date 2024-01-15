@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Badge } from "@emryui/react-badge";
 import { Dropdown } from "./Dropdown";
 import Visa from "/public/payment-method-visa.svg";
+import { ProductImage } from "./<ProductImage";
 
 type SubscriptionStatus =
   | "pending"
@@ -28,10 +29,12 @@ interface SubscriptionsProps {
   coupon_code?: string;
   product_discount_total: number;
   date_period_end: string;
-  billing: {
+  billing?: {
     exp_month?: string;
     exp_year?: string;
-    last4: string;
+    card?: {
+      last4: string;
+    };
   };
   billing_schedule?: {
     interval: "monthly" | "daily" | "weekly" | "yearly";
@@ -58,14 +61,10 @@ export function Subscriptions(props: SubscriptionsProps) {
       <div className="flex items-center p-6">
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="relative h-12 w-12">
-              <Image
-                fill
-                src={product_image}
-                alt="Product name"
-                className="rounded-md border border-gray-100 bg-gray-50"
-              />
-            </div>
+            <ProductImage
+              product_image={product_image}
+              product_name={product_name}
+            />
             <div className="flex flex-col">
               <h4 className="text-lg font-medium text-gray-900">
                 {product_name}
@@ -122,15 +121,19 @@ export function Subscriptions(props: SubscriptionsProps) {
           })}
         </div>
       </div>
-      <div className="flex items-center p-4">
-        <div className="min-w-24 text-sm text-gray-400">Payment</div>
-        <div className="flex items-center gap-4">
-          <Visa />
-          <div className="text-sm text-gray-900">
-            Visa ending in <span className="font-medium">4242</span>
+      {billing && billing.card && (
+        <div className="flex items-center p-4">
+          <div className="min-w-24 text-sm text-gray-400">Payment</div>
+          <div className="flex items-center gap-4">
+            <Visa />
+            <div className="text-sm text-gray-900">
+              Visa ending in{" "}
+              <span className="font-medium">{billing.card.last4}</span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
       <div className="flex p-4">
         <div className="h-full min-w-24 text-sm text-gray-400">Items</div>
         <ul className="flex flex-col gap-2">
