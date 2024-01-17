@@ -51,8 +51,9 @@ export function useStore() {
 }
 
 export function useSubscriptions() {
-  const [subscriptions, setSubscriptions] = useState<any>(null);
+  const [subscriptions, setSubscriptions] = useState<any>([]);
   const [customer, setCustomer] = useState<any>(null);
+  const [product, setProduct] = useState<any>({});
   const { setIsLoading } = useContext(SwellContext);
 
   useEffect(() => {
@@ -69,16 +70,23 @@ export function useSubscriptions() {
       })
       .then((data) => {
         setSubscriptions(data);
+        const product_id = data?.results[0]?.product?.id;
+        return swell.products.get(product_id);
+      })
+      .then((data) => {
+        setProduct(data);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Error", error);
+        console.error("Subscription error", error);
         setIsLoading(false);
       });
   }, []);
 
-  return { subscriptions, customer };
+  return { subscriptions, product, customer };
 }
+
+export function useBundledItems() {}
 
 export function SwellProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);

@@ -9,18 +9,20 @@ import { Loading } from "@/components/Loading";
 export default function Home() {
   const { isLoading } = useContext(SwellContext);
   const { store } = useStore();
-  const { subscriptions, customer } = useSubscriptions();
+  const { subscriptions, product, customer } = useSubscriptions();
 
   if (isLoading) {
     return <Loading />;
   }
+
+  console.log(product);
 
   return (
     <main className="flex w-full flex-col overflow-auto lg:h-screen lg:flex-row lg:overflow-y-auto lg:overflow-x-hidden">
       <Aside storeName={store?.store?.name} />
       <div className="flex w-full flex-1 flex-col gap-6 p-12">
         <Customer name={customer?.name} email={customer?.email} />
-        <Tabs subscriptions={subscriptions?.results} />
+        <Tabs subscriptions={subscriptions?.results} product={product} />
       </div>
     </main>
   );

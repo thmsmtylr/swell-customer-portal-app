@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.schema.io",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.swell.store",
+      },
     ],
   },
   webpack(config) {

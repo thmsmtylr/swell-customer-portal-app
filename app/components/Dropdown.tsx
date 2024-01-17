@@ -11,11 +11,11 @@ import DotsHorizontal from "/public/dots-horizontal.svg";
 export function Dropdown() {
   return (
     <Root>
-      <Trigger className="flex h-6 w-6 cursor-pointer items-center justify-center">
+      <Trigger className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md bg-white transition-colors hover:bg-gray-25 hover:duration-150">
         <DotsHorizontal className="h-4 w-4 text-gray-500" />
       </Trigger>
       <Portal>
-        <Content className="data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade flex min-w-32 flex-col rounded-md border border-gray-25 bg-white px-1.5 py-1.5 shadow-lg will-change-[opacity,transform]">
+        <Content className="flex min-w-32 flex-col rounded-md border border-gray-25 bg-white px-1.5 py-1.5 shadow-lg will-change-[opacity,transform] data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade">
           <Item className="cursor-pointer rounded-[4px] px-2.5 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
             Pause
           </Item>
